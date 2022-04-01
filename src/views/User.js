@@ -46,23 +46,6 @@ function User() {
                   src={require("assets/img/damir-bosnjak.jpg").default}
                 />
               </div>
-              <CardBody>
-                <div className="author">
-                  <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                    <img
-                      alt="..."
-                      className="avatar border-gray"
-                      src={require("assets/img/mike.jpg").default}
-                    />
-                    <h5 className="title">Chet Faker</h5>
-                  </a>
-                  <p className="description">@chetfaker</p>
-                </div>
-                <p className="description text-center">
-                  "I like the way you work it <br />
-                  No diggity <br />I wanna bag it up"
-                </p>
-              </CardBody>
               <CardFooter>
                 <hr />
                 <div className="button-container">
