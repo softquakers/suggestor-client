@@ -1,22 +1,5 @@
-/*!
 
-=========================================================
-* Paper Dashboard React - v1.3.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/paper-dashboard-react
-* Copyright 2021 Creative Tim (https://www.creative-tim.com)
-
-* Licensed under MIT (https://github.com/creativetimofficial/paper-dashboard-react/blob/main/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
-import React from "react";
+import React from 'react'
 
 // reactstrap components
 import {
@@ -24,137 +7,136 @@ import {
   Card,
   CardHeader,
   CardBody,
-  CardFooter,
   CardTitle,
   FormGroup,
   Form,
   Input,
   Row,
-  Col,
-} from "reactstrap";
+  Col
+} from 'reactstrap'
 
-function User() {
+function User () {
   return (
     <>
-      <div className="content">
+      <div className='content'>
         <Row>
-          <Col md="12">
-            <Card className="card-user">
+          <Col md='12'>
+            <Card className='card-user'>
               <CardHeader>
-                <CardTitle tag="h5">Edit Profile</CardTitle>
+                <CardTitle tag='h5'>Edit Profile</CardTitle>
               </CardHeader>
               <CardBody>
                 <Form>
                   <Row>
-                    <Col className="pr-1" md="5">
+                    <Col className='pr-1' md='5'>
                       <FormGroup>
                         <label>Company (disabled)</label>
                         <Input
-                          defaultValue="Creative Code Inc."
+                          defaultValue='Creative Code Inc.'
                           disabled
-                          placeholder="Company"
-                          type="text"
+                          placeholder='Company'
+                          type='text'
                         />
                       </FormGroup>
                     </Col>
-                    <Col className="px-1" md="3">
+                    <Col className='px-1' md='3'>
                       <FormGroup>
                         <label>Username</label>
                         <Input
-                          defaultValue="michael23"
-                          placeholder="Username"
-                          type="text"
+                          defaultValue='michael23'
+                          placeholder='Username'
+                          type='text'
                         />
                       </FormGroup>
                     </Col>
-                    <Col className="pl-1" md="4">
+                    <Col className='pl-1' md='4'>
                       <FormGroup>
-                        <label htmlFor="exampleInputEmail1">
+                        <label htmlFor='exampleInputEmail1'>
                           Email address
                         </label>
-                        <Input placeholder="Email" type="email" />
+                        <Input placeholder='Email' type='email' />
                       </FormGroup>
                     </Col>
                   </Row>
                   <Row>
-                    <Col className="pr-1" md="6">
+                    <Col className='pr-1' md='6'>
                       <FormGroup>
                         <label>First Name</label>
                         <Input
-                          defaultValue="Chet"
-                          placeholder="Company"
-                          type="text"
+                          defaultValue='Chet'
+                          placeholder='Company'
+                          type='text'
                         />
                       </FormGroup>
                     </Col>
-                    <Col className="pl-1" md="6">
+                    <Col className='pl-1' md='6'>
                       <FormGroup>
                         <label>Last Name</label>
                         <Input
-                          defaultValue="Faker"
-                          placeholder="Last Name"
-                          type="text"
+                          defaultValue='Faker'
+                          placeholder='Last Name'
+                          type='text'
                         />
                       </FormGroup>
                     </Col>
                   </Row>
                   <Row>
-                    <Col md="12">
+                    <Col md='12'>
                       <FormGroup>
                         <label>Address</label>
                         <Input
-                          defaultValue="Melbourne, Australia"
-                          placeholder="Home Address"
-                          type="text"
+                          defaultValue='Melbourne, Australia'
+                          placeholder='Home Address'
+                          type='text'
                         />
                       </FormGroup>
                     </Col>
                   </Row>
                   <Row>
-                    <Col className="pr-1" md="4">
+                    <Col className='pr-1' md='4'>
                       <FormGroup>
                         <label>City</label>
                         <Input
-                          defaultValue="Melbourne"
-                          placeholder="City"
-                          type="text"
+                          defaultValue='Melbourne'
+                          placeholder='City'
+                          type='text'
                         />
                       </FormGroup>
                     </Col>
-                    <Col className="px-1" md="4">
+                    <Col className='px-1' md='4'>
                       <FormGroup>
                         <label>Country</label>
                         <Input
-                          defaultValue="Australia"
-                          placeholder="Country"
-                          type="text"
+                          defaultValue='Australia'
+                          placeholder='Country'
+                          type='text'
                         />
                       </FormGroup>
                     </Col>
-                    <Col className="pl-1" md="4">
+                    <Col className='pl-1' md='4'>
                       <FormGroup>
                         <label>Postal Code</label>
-                        <Input placeholder="ZIP Code" type="number" />
+                        <Input placeholder='ZIP Code' type='number' />
                       </FormGroup>
                     </Col>
                   </Row>
                   <Row>
-                    <Col md="12">
+                    <Col md='12'>
                       <FormGroup>
                         <label>About Me</label>
                         <Input
-                          type="textarea"
-                          defaultValue="Oh so, your weak rhyme You doubt I'll bother, reading into it"
+                          type='textarea'
+                          defaultValue=''
                         />
                       </FormGroup>
                     </Col>
                   </Row>
                   <Row>
-                    <div className="update ml-auto mr-auto">
+                    <div className='update ml-auto mr-auto'>
                       <Button
-                        className="btn-round"
-                        color="primary"
-                        type="submit"
+                        className='btn-round'
+                        color='primary'
+                        type='submit'
                       >
                         Update Profile
                       </Button>
@@ -167,7 +149,7 @@ function User() {
         </Row>
       </div>
     </>
-  );
+  )
 }
 
-export default User;
+export default User
