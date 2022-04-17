@@ -1,24 +1,7 @@
-/*!
-
-=========================================================
-* Paper Dashboard React - v1.3.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/paper-dashboard-react
-* Copyright 2021 Creative Tim (https://www.creative-tim.com)
-
-* Licensed under MIT (https://github.com/creativetimofficial/paper-dashboard-react/blob/main/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
-import React from 'react'
-
+import React, { useState } from 'react'
 // reactstrap components
+
+import { useAlert } from 'react-alert'
 import {
   Button,
   Card,
@@ -31,9 +14,66 @@ import {
   Row,
   Col
 } from 'reactstrap'
+const { postData } = require('../API/network.js')
 
 function Login () {
+  const alert = useAlert()
+  const [secretPhaseDisplay, setSecretPhaseDisplay] = useState('none')
+  const [emailFilled, setEmailFilled] = useState(true)
+  const [firstNameFilled, setFirstNameFilled] = useState(true)
+  const [lastNameFilled, setLastNameFilled] = useState(true)
+  const [phoneFilled, setPhoneFilled] = useState(true)
+  const [passwordFilled, setPasswordFilled] = useState(true)
+  const [repeatPasswordFilled, setRepeatPasswordFilled] = useState(true)
+  const [payLoad, setPayLoad] = useState({})
+  const onEmailChange = (e) => {
+    setEmailFilled(true)
+    setPayLoad(Object.assign(payLoad, { email: e.target.value }))
+  }
+  const onPasswordChange = (e) => {
+    setPasswordFilled(true)
+    setPayLoad(Object.assign(payLoad, { password: e.target.value }))
+  }
+  const onRepeatPasswordChange = (e) => {
+    setRepeatPasswordFilled(true)
+    setPayLoad(Object.assign(payLoad, { repeatPassword: e.target.value }))
+  }
+  const onPhoneChange = (e) => {
+    setPhoneFilled(true)
+    setPayLoad(Object.assign(payLoad, { phone: e.target.value }))
+  }
+  const onfirstNameChange = (e) => {
+    setFirstNameFilled(true)
+    setPayLoad(Object.assign(payLoad, { firstName: e.target.value }))
+  }
+  const onLastnameChange = (e) => {
+    setLastNameFilled(true)
+    setPayLoad(Object.assign(payLoad, { lastName: e.target.value }))
+  }
+  const onCompanyChange = (e) => {
+    setPayLoad(Object.assign(payLoad, { companyName: e.target.value }))
+  }
+  const signUp = async () => {
+    if (payLoad.email === undefined || payLoad.email?.trim() === '') { setEmailFilled(false) }
+    if (payLoad.password === undefined || payLoad.password?.trim() === '') { setPasswordFilled(false) }
+    if (payLoad.repeatPassword === undefined || payLoad.repeatPassword?.trim() === '') { setRepeatPasswordFilled(false) }
+    if (payLoad.firstName === undefined || payLoad.firstName?.trim() === '') { setFirstNameFilled(false) }
+    if (payLoad.lastName === undefined || payLoad.lastName?.trim() === '') { setLastNameFilled(false) }
+    if (payLoad.phone === undefined || payLoad.phone?.trim() === '') { setPhoneFilled(false) }
+    const request = { endPoint: 'accounts/register', data: payLoad }
+    const response = await postData(request)
+    console.log(5, response)
+    if (response.success) {
+      setSecretPhaseDisplay('block')
+      console.log(secretPhaseDisplay)
+      alert.show('success')
+    } else {
+      alert('failed')
+    }
+  }
   const customStyle = { marginLeft: '30px', width: 'calc(100% - 60px)', minWidth: '200px' }
+  const customAlertStyle = { marginLeft: '30px', width: 'calc(100% - 60px)', minWidth: '200px', borderColor: 'blue', color: 'blue' }
+  const customErrorStyle = { marginLeft: '30px', width: 'calc(100% - 60px)', minWidth: '200px', borderColor: 'red' }
   const titleStyle = { marginLeft: '20px', width: 'calc(100% - 60px)', minWidth: '200px' }
   return (
     <>
@@ -97,10 +137,10 @@ function Login () {
                       <FormGroup>
                         <label style={customStyle}>E mail </label>
                         <Input
-                          style={customStyle}
-                          defaultValue='michael23'
-                          placeholder='Username'
+                          style={emailFilled ? customStyle : customErrorStyle}
+                          placeholder={emailFilled ? 'E mail' : 'Enter some value'}
                           type='email'
+                          onChange={(e) => { onEmailChange(e) }}
                         />
                       </FormGroup>
                     </Col>
@@ -108,10 +148,11 @@ function Login () {
                       <FormGroup>
                         <label style={customStyle}>Phone</label>
                         <Input
-                          style={customStyle}
+                          style={phoneFilled ? customStyle : customErrorStyle}
                           defaultValue='9061955456'
                           placeholder='Phone'
                           type='text'
+                          onChange={(e) => { onPhoneChange(e) }}
                         />
                       </FormGroup>
                     </Col>
@@ -121,10 +162,11 @@ function Login () {
                       <FormGroup>
                         <label style={customStyle}>First name</label>
                         <Input
-                          style={customStyle}
+                          style={firstNameFilled ? customStyle : customErrorStyle}
                           defaultValue='Krishnan'
                           placeholder='name'
                           type='text'
+                          onChange={(e) => { onfirstNameChange(e) }}
                         />
                       </FormGroup>
                     </Col>
@@ -132,10 +174,11 @@ function Login () {
                       <FormGroup>
                         <label style={customStyle}>Last Name</label>
                         <Input
-                          style={customStyle}
+                          style={lastNameFilled ? customStyle : customErrorStyle}
                           defaultValue='Rakesh'
                           placeholder='name'
                           type='text'
+                          onChange={(e) => { onLastnameChange(e) }}
                         />
                       </FormGroup>
                     </Col>
@@ -149,17 +192,42 @@ function Login () {
                           defaultValue='Looking good'
                           placeholder='name'
                           type='text'
+                          onChange={(e) => { onCompanyChange(e) }}
                         />
                       </FormGroup>
                     </Col>
                     <Col className='px-1' lg='6' md='6' sm='12'>
-                      <FormGroup style={{ display: 'none' }}>
-                        <label style={customStyle}>Secret phrase</label>
+                      <FormGroup>
+                        <label style={customStyle}>Password</label>
                         <Input
-                          style={customStyle}
+                          style={passwordFilled ? customStyle : customErrorStyle}
                           defaultValue='*******'
                           placeholder='name'
-                          type='text'
+                          type='password'
+                          onChange={(e) => { onPasswordChange(e) }}
+                        />
+                      </FormGroup>
+                    </Col>
+                    <Col className='px-1' lg='6' md='6' sm='12'>
+                      <FormGroup>
+                        <label style={customStyle}>Repeat Password</label>
+                        <Input
+                          style={repeatPasswordFilled ? customStyle : customErrorStyle}
+                          defaultValue='*******'
+                          placeholder='name'
+                          type='password'
+                          onChange={(e) => { onRepeatPasswordChange(e) }}
+                        />
+                      </FormGroup>
+                    </Col>
+                    <Col className='px-1' lg='6' md='6' sm='12'>
+                      <FormGroup style={{ display: secretPhaseDisplay }}>
+                        <label style={customAlertStyle}>Enter One Time Password sent to your mobile here</label>
+                        <Input
+                          style={customAlertStyle}
+                          defaultValue='*******'
+                          placeholder='name'
+                          type='password'
                         />
                       </FormGroup>
                     </Col>
@@ -167,7 +235,7 @@ function Login () {
                   <Row>
                     <Col className='px-1' lg='12' md='12' sm='12'>
                       <FormGroup style={{ textAlign: 'center' }}>
-                        <Button> Create Account </Button>
+                        <Button onClick={() => { signUp() }}> Create Account </Button>
                       </FormGroup>
                     </Col>
                   </Row>
